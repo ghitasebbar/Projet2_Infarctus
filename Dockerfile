@@ -9,6 +9,6 @@ ADD requirements.txt .
 RUN pip3 install -r requirements.txt \
     && rm -rf /root/.cache
 
-COPY . . 
+COPY . .
 
 CMD ["uvicorn", "server:api", "--host", "0.0.0.0", "--port", "8000"]
