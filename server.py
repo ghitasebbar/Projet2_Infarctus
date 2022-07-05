@@ -20,25 +20,26 @@ from fastapi import FastAPI, Request
 import random
 from werkzeug.exceptions import NotFound, Unauthorized, BadRequest
 from pydantic import BaseModel
+import models.ml.classifier as clf
 import models.ml.modeler as mdl
 from fastapi import Security, Depends, FastAPI, HTTPException, status
 from fastapi.security.api_key import APIKeyHeader, APIKey
 
 description = """
-This API helps you get infarctus score for a given patient.
+This API lets you get infarctus score for a given patient.
 The api access is restricted.
-## Scores
 
+## Scores
 * /predict/v1 let you **get scores for new patients using a logistic regression method**.
 * /predict/v2 let you **get scores for new patients using a random forest method**.
 
 ## Models
-
 You will be able to:
-
 * **Train a new model from new data using a logistic regression model**.
 * **Train a new model from new data using a random forrst model**.
+
 """
+
 PROJET2_API_KEY = "OTS7KgBNNBYORI7nVjQeJA"
 API_KEY_NAME = "project2_access_token"
 
@@ -104,20 +105,22 @@ def train_with_new_data(model: Model, request: Request, api_key_header: APIKey =
                     status_code="405",
                     detail="An error occured"
             )
-            #return {"status":"NOK"}
     else:
         try:
             mdl.create_random_forest_model(model.url)
             return {"status": "OK"}
         except Exception:
-            return {"status": "NOK"}
+            raise HTTPException(
+                    status_code="405",
+                    detail="An error occured"
+            )
 
 @api.post("/predict/v1")
 async def predict_lr_score(patient: Patient, request: Request, api_key_header: APIKey = Depends(get_api_key)):
 
     data = [[patient.gender, patient.age, patient.hypertension, patient.heart_disease, patient.ever_married, patient.work_type, patient.residence_type, patient.avg_glucose_level, patient.bmi, patient.smoking_status]]
     
-    model_lr = models['model_lr'] #load('./stroke_model.joblib')
+    model_lr = models['model_lr']
     
     X = pd.DataFrame(data, columns=['gender', 'age', 'hypertension', 'heart_disease', 'ever_married', 'work_type', 'Residence_type', 'avg_glucose_level', 'bmi', 'smoking_status'])
     
