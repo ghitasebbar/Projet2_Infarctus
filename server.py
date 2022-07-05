@@ -20,7 +20,6 @@ from fastapi import FastAPI, Request
 import random
 from werkzeug.exceptions import NotFound, Unauthorized, BadRequest
 from pydantic import BaseModel
-import models.ml.classifier as clf
 import models.ml.modeler as mdl
 from fastapi import Security, Depends, FastAPI, HTTPException, status
 from fastapi.security.api_key import APIKeyHeader, APIKey
@@ -37,8 +36,8 @@ The api access is restricted.
 
 You will be able to:
 
-* **Train a new model from new data**.
-* **Read users** (_not implemented_).
+* **Train a new model from new data using a logistic regression model**.
+* **Train a new model from new data using a random forrst model**.
 """
 PROJET2_API_KEY = "OTS7KgBNNBYORI7nVjQeJA"
 API_KEY_NAME = "project2_access_token"
@@ -112,10 +111,6 @@ def train_with_new_data(model: Model, request: Request, api_key_header: APIKey =
             return {"status": "OK"}
         except Exception:
             return {"status": "NOK"}
-
-#@api.on_event('startup')
-#def load_model():
-#	clf.model = load('./stroke_model.joblib') # models/ml/stroke_model.joblib
 
 @api.post("/predict/v1")
 async def predict_lr_score(patient: Patient, request: Request, api_key_header: APIKey = Depends(get_api_key)):
