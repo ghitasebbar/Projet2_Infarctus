@@ -26,8 +26,8 @@ Il y'a deux branches sur ce repository.
 
 ### Utilisation de l'API
 Lancer l'API:
->> chmod +x setup.sh.  
->> sh setup.sh.  
+>> chmod +x setup.sh    
+>> sh setup.sh  
 Vous pouvez tester et consulter la documentation de l'API sur http://0.0.0.0:8000/docs  après lancement. 
 #### Clé d'API: OTS7KgBNNBYORI7nVjQeJA
 
