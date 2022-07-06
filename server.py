@@ -20,7 +20,6 @@ from fastapi import FastAPI, Request
 import random
 from werkzeug.exceptions import NotFound, Unauthorized, BadRequest
 from pydantic import BaseModel
-import models.ml.classifier as clf
 import models.ml.modeler as mdl
 from fastapi import Security, Depends, FastAPI, HTTPException, status
 from fastapi.security.api_key import APIKeyHeader, APIKey

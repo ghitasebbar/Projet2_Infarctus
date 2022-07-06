@@ -19,7 +19,7 @@ def test_get_score_lr():
 
 def test_get_score_rf():
     response = client.post(
-                "predict/v2",
+                "/predict/v2",
                 headers={"project2_access_token": "OTS7KgBNNBYORI7nVjQeJA"},
             json={"gender": "Female", "age": 29, "hypertension": 0, "heart_disease": 0, "ever_married": "No", "work_type": "Private", "residence_type": "Urban", "avg_glucose_level": 9, "bmi": 20, "smoking_status": "never smoked"}
             )
