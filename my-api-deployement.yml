@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: projet2-api
+  labels:
+    app: projet2-api
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: projet2-api
+  template:
+    metadata:
+      labels:
+        app: projet2-api
+    spec:
+      containers:
+      - name: projet2-api
+        image: orange_de/projet2-api:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8000
+
