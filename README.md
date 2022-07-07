@@ -10,8 +10,9 @@ Ce repository contient les rendus du projet 2. Un modèle de classification a é
 6. residence_type: le type de résidence du patient
 7. avg_glucose_level: le taux moyen de glucse du patient
 8. bmi: l'indice de masse coporelle du patient
-9. smoking_status : est-ce que le patient fume
-Cette fonctionnalité de prédiction a été ouvertE par l'intermédiare d'une API développée avec FastAPI. Le tout est sécurisé et containairisé avec Docker.
+9. smoking_status : est-ce que le patient fume. 
+
+Cette fonctionnalité de prédiction a été ouverte par l'intermédiare d'une API développée avec FastAPI.  Le tout est sécurisé et containairisé avec Docker.
 
 ### Branches
 Il y'a deux branches sur ce repository.
@@ -19,7 +20,7 @@ Il y'a deux branches sur ce repository.
 2. develop_kube : contient une version du code déployable avec Docker sur Kubernetes
 
 ### Fichiers
-1. Le fichier setup.sh contient un code lancement de lancement de l'API sur Docker ou Kubernetes avec Docker selon votre branche
+1. Le fichier setup.sh contient un code de lancement de l'API sur Docker ou Kubernetes avec Docker selon votre branche
 2. Le ficher test_api_projet2.py contient les tests des différentes routes disponibles sur l'API
 3. Le fichier server.py contient le code de définition des différentes routes de l'API
 4. Le fichier my-api-deployement.yml pour le deploiment des pods
@@ -35,8 +36,9 @@ Sur kubernetes il faudra au préalable créer un tunel ssh entre l'API et le por
 
 >> ssh -i "data_enginering_machine.pem" ubuntu@3.251.80.227 -fNL 8000:192.168.49.2:80
 
-Et donc par la suite l'api s'ouvre sur le navigateur sur l'adresse  localhost:8000/docs
+Et donc par la suite l'api s'ouvre sur le navigateur sur l'adresse  localhost:8000/docs.  
+`Nota`: L'utilisation de l'API par corps de requête
 
 #### Clé d'API: OTS7KgBNNBYORI7nVjQeJA
-Cet API est sécurisée par le mécanisme de clé. Sur l'interface http://0.0.0.0:8000/docs , renseignez cette clé pour avoir accès aux routes.  
+Cet API est sécurisé par le mécanisme de clé d'API. Sur l'interface http://0.0.0.0:8000/docs , renseignez cette clé pour avoir accès aux routes.  
 Par requêtage cURL, renseignez la clé d'API dans les headers de la requête avec la clé: `project2_access_token`.  
